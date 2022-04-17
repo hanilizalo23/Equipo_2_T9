@@ -1,1 +1,1 @@
-# Equipo_2_T9-
+LCD Nokia & SPI memory.
