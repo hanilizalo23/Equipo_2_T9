@@ -4,7 +4,7 @@
  * @file    MemorySPI.h
  * @brief   Control Memory SPI communication from FRDM-K64F.
  */
-
+ 
 #ifndef MEMORYSPI_H_
 #define MEMORYSPI_H_
 
@@ -19,7 +19,8 @@
 
 #define MEM_DATA			(4U)
 #define UPPER_BYTE			(0xFF00)
-
+#define LOWER_BYTE			(0xFF)
+#define RIGHT_SHIFTER_8		(8U)
 
 //2 MHz Transmission
 #define TRANSFER_BAUDRATE_MEM	(2000000U)

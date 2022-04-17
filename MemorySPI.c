@@ -73,6 +73,20 @@ void send_to_memory(uint32_t address)
 
 	return;
 }
-
+ 
 void memory_half_duplex_init(const uint8_t data[])
-{}
+{
+	dspi_half_duplex_transfer_t xfer;
+
+	xfer.txData                = (uint8_t *)data;
+	xfer.rxData                = &g_rxData;
+	xfer.txDataSize            = MEM_DATA;
+	xfer.rxDataSize            = LCD_DATA;
+	xfer.isTransmitFirst       = true;
+	xfer.isPcsAssertInTransfer = true;
+	xfer.configFlags           = kDSPI_MasterCtar1 | kDSPI_MasterPcs1 | kDSPI_MasterPcsContinuous;
+
+	DSPI_MasterHalfDuplexTransferBlocking(SPI0, &xfer);
+
+	return;
+}
