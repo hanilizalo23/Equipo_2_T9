@@ -21,6 +21,7 @@
 #define DATA_OR_CMD_PIN 4
 #define RESET_PIN 5
 #define CE 6
+#define DELAY_FOR_LCD 	(500U)
 
 /*It configures the LCD*/
 void LCD_nokia_init(void);
