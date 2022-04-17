@@ -1,1 +1,0 @@
-LCD Nokia & SPI memory.
