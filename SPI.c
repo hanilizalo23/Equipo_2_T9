@@ -20,6 +20,16 @@ void SPI_Init(void)
 	PORT_SetPinMux(PORTD,PIN2_IDX,kPORT_MuxAlt2);
 	PORT_SetPinMux(PORTD,PIN3_IDX,kPORT_MuxAlt2);
 
+	masterConfig.whichCtar                                = kDSPI_Ctar0;
+	masterConfig.ctarConfig.baudRate                      = TRANSFER_BAUDRATE;
+	masterConfig.ctarConfig.bitsPerFrame                  = BITS_FRAME;
+	masterConfig.ctarConfig.cpol                          = kDSPI_ClockPolarityActiveHigh;
+	masterConfig.ctarConfig.cpha                          = kDSPI_ClockPhaseFirstEdge;
+	masterConfig.ctarConfig.direction                     = kDSPI_MsbFirst;
+	masterConfig.ctarConfig.pcsToSckDelayInNanoSec        = TRANSFER_DELAY / TRANSFER_BAUDRATE;
+	masterConfig.ctarConfig.lastSckToPcsDelayInNanoSec    = TRANSFER_DELAY / TRANSFER_BAUDRATE;
+	masterConfig.ctarConfig.betweenTransferDelayInNanoSec = TRANSFER_DELAY / TRANSFER_BAUDRATE;
+
 	masterConfig.whichPcs           = kDSPI_Pcs0;
 	masterConfig.pcsActiveHighOrLow = kDSPI_PcsActiveLow;
 
