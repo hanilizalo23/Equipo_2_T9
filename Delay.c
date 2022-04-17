@@ -1,14 +1,22 @@
+/*
+ * Delay.c
+ *
+ *  Created on: 17/04/2022
+ *      Author: Nelida Hernández
+ */
 
+#include "Delay.h"
 
-#include  "Delay.h"
-
-void delay(uint16_t delay)
+void delay(uint32_t delay)
 {
-	volatile int counter, counter_2;
+	volatile uint32_t i, j;
 
-		for(counter_2 = 16; counter_2 > 0; counter_2--)
+	for(i = delay; i > 0; i--)
+	{
+		for(j = delay; j > 0; j--)
 		{
-			for(counter = delay; counter > 0; counter--);
+			__asm("nop");
 
 		}
+	}
 }
