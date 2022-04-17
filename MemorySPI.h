@@ -14,7 +14,13 @@
 #include "pin_mux.h"
 #include "clock_config.h"
 #include "board.h"
+#include "LCD_nokia.h"
 #include "SPI.h"
+
+
+//2 MHz Transmission
+#define TRANSFER_BAUDRATE_MEM	(2000000U)
+#define TRANSFER_DELAY_MEM	 	(1000000000U)
 
 void SPI_Memory_Init(void);
 
