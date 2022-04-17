@@ -7,6 +7,12 @@
 
 #include "MemorySPI.h"
 
+#define IMAGE_SIZE	(504U)
+
+static uint8_t g_rxData;
+static uint8_t g_sendData[504];
+static uint8_t g_readDataCmd = 0x03;
+static uint8_t g_instrAddr[MEM_DATA];
 
 void SPI_Memory_Init(void)
 {
@@ -39,3 +45,34 @@ void SPI_Memory_Init(void)
 
 	return;
 }
+
+void send_to_memory(uint32_t address)
+{
+	uint8_t upperAddress;
+	uint8_t lowerAddress;
+	uint32_t x;
+
+	for(x = 0; x < IMAGE_SIZE; x++)
+	{
+		upperAddress = address >> RIGHT_SHIFTER_8;
+		lowerAddress = (address & LOWER_BYTE);
+
+		g_instrAddr[0] = g_readDataCmd;
+		g_instrAddr[1] = 0; //This is the start of the addresses in the memory at 0x0000
+		g_instrAddr[2] = upperAddress;
+		g_instrAddr[3] = lowerAddress;
+
+		memory_half_duplex_init(g_instrAddr);
+
+		g_sendData[x] = g_rxData;
+
+		address++;
+	}
+
+	LCD_nokia_bitmap(g_sendData, IMAGE_SIZE);
+
+	return;
+}
+
+void memory_half_duplex_init(const uint8_t data[])
+{}

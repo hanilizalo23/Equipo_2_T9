@@ -17,6 +17,9 @@
 #include "LCD_nokia.h"
 #include "SPI.h"
 
+#define MEM_DATA			(4U)
+#define UPPER_BYTE			(0xFF00)
+
 
 //2 MHz Transmission
 #define TRANSFER_BAUDRATE_MEM	(2000000U)
@@ -24,5 +27,8 @@
 
 void SPI_Memory_Init(void);
 
+void send_to_memory(uint32_t address);
+
+void memory_half_duplex_init(const uint8_t data[]);
 
 #endif /* MEMORYSPI_H_ */
