@@ -20,6 +20,14 @@ void SPI_Init(void)
 	PORT_SetPinMux(PORTD,PIN2_IDX,kPORT_MuxAlt2);
 	PORT_SetPinMux(PORTD,PIN3_IDX,kPORT_MuxAlt2);
 
+	masterConfig.whichPcs           = kDSPI_Pcs0;
+	masterConfig.pcsActiveHighOrLow = kDSPI_PcsActiveLow;
+
+	masterConfig.enableContinuousSCK        = false;
+	masterConfig.enableRxFifoOverWrite      = false;
+	masterConfig.enableModifiedTimingFormat = false;
+	masterConfig.samplePoint                = kDSPI_SckToSin0Clock;
+
 	srcClock_Hz = DSPI0_CLK_SRC;
 	DSPI_MasterInit(SPI0, &masterConfig, srcClock_Hz);
 
